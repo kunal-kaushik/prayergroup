@@ -8,10 +8,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData
 } from "@remix-run/react";
 
 import { getUser } from "~/session.server";
 import stylesheet from "~/tailwind.css";
+
+import { Navbar } from "./components/navbar";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -19,20 +22,23 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  return json({ user: await getUser(request) });
+  const user = await getUser(request);
+  return json({ isLoggedIn: Boolean(user) });
 };
 
 export default function App() {
+  const { isLoggedIn } = useLoaderData<typeof loader>();
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
-        <Outlet />
+      <body>
+        <Navbar isLoggedIn={isLoggedIn} />
+        <div className="container mx-auto">
+          <Outlet /> {/* This is where the individual pages will render */}
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
