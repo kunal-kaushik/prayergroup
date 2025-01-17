@@ -61,14 +61,29 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 
   async function fetchRandomCatholicImage() {
-    const response = await fetch(
-      `https://api.unsplash.com/photos/random?query=Roman+Catholic&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`,
-    );
-    const data = await response.json();
-    return data.urls.regular; // Use the regular-sized image URL
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/photos/random?query=Roman+Catholic&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`Unsplash API responded with ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data && data.urls && data.urls.regular) {
+        return data.urls.regular; // Use the regular-sized image URL
+      } else {
+        console.error("Unexpected Unsplash API response format:", data);
+        return "/default-image-path.jpg"; // Fallback image URL
+      }
+    } catch (error) {
+      console.error("Error fetching Unsplash image:", error);
+      return "/default-image-path.jpg"; // Fallback image URL in case of an error
+    }
   }
 
-  // Example usage
   const randomImageUrl = await fetchRandomCatholicImage();
 
   await createArticle({
