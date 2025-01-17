@@ -8,31 +8,52 @@ generator client {
 }
 
 model User {
-  id    String @id @default(cuid())
-  email String @unique
-
+  id        String  @id @default(cuid())
+  email     String  @unique @db.VarChar(255) // Example with @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  password Password?
-  notes    Note[]
+  password  Password?
 }
 
 model Password {
-  hash String
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  hash   String
   userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Note {
-  id    String @id @default(cuid())
-  title String
-  body  String
+model Article {
+  id              String   @id @default(cuid())
+  title           String   @db.VarChar(255)
+  body            String   @db.Text
+  category        String   @db.VarChar(100)
+  previewImageUrl String   @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+}
 
+model Resource {
+  id            String   @id @default(cuid())
+  title         String
+  url           String
+  description   String?
+  ogTitle       String?
+  ogDescription String?
+  ogImageUrl    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  date      DateTime @default(now())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId String
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
 }

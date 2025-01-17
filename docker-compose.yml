@@ -1,13 +1,39 @@
 version: "3.7"
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:8080" # Map the container's internal port 8080 to host's port 3000
+    environment:
+      DATABASE_URL: postgres://postgres:dnUTAx081CBW2Om@lively-dawn-4245.flycast:5432
+      NODE_ENV: production
+    depends_on:
+      - postgres
+
   postgres:
-    image: postgres:latest
+    image: postgres:15 # Use a compatible PostgreSQL version
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dnUTAx081CBW2Om
+      POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - "5432:5432" # Map the host's port 5432 to the container's port 5432
+    networks:
+      - internal_network
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080" # Adminer UI on localhost:8081
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
