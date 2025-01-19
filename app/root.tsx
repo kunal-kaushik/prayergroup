@@ -33,6 +33,7 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
         <Navbar isLoggedIn={isLoggedIn} />
