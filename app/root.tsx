@@ -14,6 +14,7 @@ import {
 import { getUser } from "~/session.server";
 import stylesheet from "~/tailwind.css";
 
+import { Footer } from "./components/footer";
 import { Navbar } from "./components/navbar";
 
 export const links: LinksFunction = () => [
@@ -40,6 +41,7 @@ export default function App() {
         <div className="container mx-auto">
           <Outlet /> {/* This is where the individual pages will render */}
         </div>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

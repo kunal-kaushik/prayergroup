@@ -37,7 +37,7 @@ export default function Index() {
                 </span>
               </h1>
               <p className="mx-auto mt-6 max-w-lg text-center text-5xl text-white sm:max-w-3xl">
-                Rosary Prayer Group
+                Rosary Apostolate
               </p>
               <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                 {data.isLoggedIn ? (
@@ -120,6 +120,10 @@ export default function Index() {
                 >
                   Google Meet
                 </a>
+              </p>
+              <p className="mx-auto mt-4 max-w-2xl text-sm text-gray-600">
+                * Kindly turn off your microphone when joining the meeting to
+                avoid background noise.
               </p>
             </div>
           </div>
