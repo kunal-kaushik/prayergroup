@@ -1,3 +1,4 @@
+import type { MetaFunction } from "@remix-run/node";
 import { json, LoaderFunctionArgs, ActionFunctionArgs, redirect } from "@remix-run/node";
 import { Link, useLoaderData, Form, useSubmit } from "@remix-run/react";
 import { useState } from "react";
@@ -7,6 +8,7 @@ import { getUserId } from "~/session.server";
 
 import NewResourcePage from "./resources.new";
 
+export const meta: MetaFunction = () => [{ title: "About Us" }];
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await getUserId(request);
   const resourceListItems = await getResourceListItems({

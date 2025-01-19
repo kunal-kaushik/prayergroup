@@ -1,3 +1,4 @@
+import type { MetaFunction } from "@remix-run/node";
 import { json, LoaderFunctionArgs, ActionFunctionArgs, redirect } from "@remix-run/node";
 import { useLoaderData, Form, useSubmit } from "@remix-run/react";
 import { useState } from "react";
@@ -6,6 +7,8 @@ import { getAnnouncementListItems, deleteAnnouncement } from "~/models/announcem
 import { getUserId } from "~/session.server";
 
 import NewAnnouncementForm from "./announcements.new";
+
+export const meta: MetaFunction = () => [{ title: "Announcements" }];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await getUserId(request);

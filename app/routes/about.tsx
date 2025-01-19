@@ -1,3 +1,7 @@
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => [{ title: "About Us" }];
+
 const About = () => {
   return (
     <div className="min-h-screen bg-gray-100">

@@ -1,8 +1,11 @@
+import type { MetaFunction } from "@remix-run/node";
 import { ActionFunction, json } from "@remix-run/node";
 import { Form, useActionData, useNavigation } from "@remix-run/react";
 import { useRef, useState, useEffect } from "react";
 
 import { addSubscriber, findSubscriberByEmail } from "~/models/subscriber.server";
+
+export const meta: MetaFunction = () => [{ title: "About Us" }];
 
 // Define the structure of actionData
 type ActionData =

@@ -1,3 +1,4 @@
+import type { MetaFunction } from "@remix-run/node";
 import {
   json,
   redirect,
@@ -17,6 +18,7 @@ import {
 import type { ArticleListItem } from "~/models/article.server";
 import { getUserId } from "~/session.server";
 
+export const meta: MetaFunction = () => [{ title: "About Us" }];
 const { convertFromRaw, Editor, EditorState } = Draft;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
