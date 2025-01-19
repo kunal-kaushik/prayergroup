@@ -7,7 +7,7 @@ export function Navbar({ isLoggedIn }: { isLoggedIn: boolean }) {
         {/* Logo Section */}
         <Link to="/" className="flex items-center gap-2">
           <img
-            src="public/logo.png" // Replace this with the actual path to your logo image
+            src="/public/logo.png" // Replace this with the actual path to your logo image
             alt="Website Logo"
             className="h-10 w-auto object-contain" // Ensures the logo is well-sized and scales nicely
           />
