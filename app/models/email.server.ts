@@ -18,7 +18,7 @@ export async function sendEmail({
   try {
     const msg = {
       to,
-      from: "kole.kaushik@gmail.com", // Replace with your verified sender email
+      from: "flamesofloverosarygroup@gmail.com", // Replace with your verified sender email
       subject,
       text,
     };

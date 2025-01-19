@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from "react";
 
 import { addSubscriber, findSubscriberByEmail } from "~/models/subscriber.server";
 
-export const meta: MetaFunction = () => [{ title: "About Us" }];
+export const meta: MetaFunction = () => [{ title: "Sign up" }];
 
 // Define the structure of actionData
 type ActionData =

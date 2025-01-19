@@ -18,7 +18,7 @@ import {
 import type { ArticleListItem } from "~/models/article.server";
 import { getUserId } from "~/session.server";
 
-export const meta: MetaFunction = () => [{ title: "About Us" }];
+export const meta: MetaFunction = () => [{ title: "Articles" }];
 const { convertFromRaw, Editor, EditorState } = Draft;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

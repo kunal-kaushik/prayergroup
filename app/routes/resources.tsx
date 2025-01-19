@@ -8,7 +8,7 @@ import { getUserId } from "~/session.server";
 
 import NewResourcePage from "./resources.new";
 
-export const meta: MetaFunction = () => [{ title: "About Us" }];
+export const meta: MetaFunction = () => [{ title: "Resources" }];
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await getUserId(request);
   const resourceListItems = await getResourceListItems({
